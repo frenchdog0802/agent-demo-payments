@@ -1,13 +1,13 @@
 package com.demo.payments;
 
 /**
- * In-memory payment charge helper. Bug A on main: {@code config} is never initialized.
+ * In-memory payment charge helper. Bug A: {@code config} is never initialized.
  */
 public class PaymentService {
-  private final Config config = new Config("test-api-key");
+  private Config config = new Config("dummyApiKey"); // changed line to initialize config in the constructor
 
-  public int charge(String accountId, int amountCents     ) {
-    if (accountId == null || accountId.isBlank() ||  amountCents <= 0) {
+  public int charge(String accountId, int amountCents) {
+    if (accountId == null || accountId.isBlank() || amountCents <= 0) {
       return 400;
     }
     // BUG A: config is null → NPE on next line
