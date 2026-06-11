@@ -4,7 +4,7 @@ package com.demo.payments;
  * In-memory payment charge helper. Bug A: {@code config} is never initialized.
  */
 public class PaymentService {
-  private Config config;
+  private Config config = new Config("dummyApiKey"); // changed line to initialize config in the constructor
 
   public int charge(String accountId, int amountCents) {
     if (accountId == null || accountId.isBlank() || amountCents <= 0) {
